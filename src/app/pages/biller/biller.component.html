@@ -1,0 +1,58 @@
+<mat-card class="cardWithShadow theme-card">
+    <mat-card-header>
+      <mat-card-title>Biller Information</mat-card-title>
+      <mat-card-subtitle>Credit Balance: {{ walletBalance | currency: '₦'}}</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+
+      <mat-card-title>Amount to be paid: {{ baseAmount | currency: '₦'}}</mat-card-title>
+
+      <form >
+        <div class="row">
+          <div class="col-12">
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Shipping Address</mat-label>
+              <input matInput formControlName="accountNumber" type="text" placeholder="Enter shippiing address">
+            </mat-form-field>
+          </div>
+  
+          <div class="col-12">
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Biller Name</mat-label>
+              <input matInput formControlName="billerName" type="text" placeholder="Enter biller name">
+            </mat-form-field>
+          </div>
+  
+          <!-- <div class="col-12">
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Amount</mat-label>
+              <input matInput formControlName="amount" type="number" placeholder="Enter amount">
+            </mat-form-field>
+          </div> -->
+  
+          <div class="col-12">
+            <mat-form-field class="w-100 m-t-16" appearance="outline">
+                <mat-label>Payment Duration</mat-label>
+                <mat-select [(value)]="selectedDuration" (selectionChange)="updateMonthlyPayment()">
+                  <mat-option *ngFor="let option of paymentOptions" [value]="option.value">
+                    {{ option.label }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+          </div>
+        </div>
+      </form>
+  
+      <div class="m-t-16">
+        <h4>Monthly Payment: <span class="text-primary">{{ monthlyPayment | currency: '₦' }}</span></h4>
+      </div>
+    </mat-card-content>
+
+     <mat-card-content class="b-t-1">
+        <div class="d-flex justify-content-end m-t-24">
+          <button mat-raised-button color="primary" (click)="checkout()">Place order</button>
+        </div>
+      </mat-card-content>
+  </mat-card>
+  
